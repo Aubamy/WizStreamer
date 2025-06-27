@@ -1,0 +1,86 @@
+.overview-container {
+  padding: 20px;
+  background: #000;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.overview-header h1 {
+  font-size: 28px;
+}
+
+.go-live-btn {
+  padding: 10px 20px;
+  background-color: #0f017a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.status-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.status-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.status-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.status-card p {
+  margin: 4px 0 0;
+  color: #555;
+}
+
+.status-card.live {
+  border-left: 5px solid red;
+}
+
+.status-card.scheduled {
+  border-left: 5px solid orange;
+}
+
+.status-card.past {
+  border-left: 5px solid green;
+}
+
+.upcoming-section h2 {
+  margin-bottom: 10px;
+}
+
+.upcoming-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.upcoming-section li {
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.03);
+  display: flex;
+  justify-content: space-between;
+}

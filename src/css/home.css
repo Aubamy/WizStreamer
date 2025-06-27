@@ -1,0 +1,132 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.sidesection{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.sideicon{
+  height: 100vh;
+  width: 10%;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+}
+.sideicon img{
+  gap: 1rem;
+}
+
+.sidebar{
+  height: 100vh;
+  width: 20%;
+  background-color: whitesmoke;
+}
+
+form{
+  display: flex;
+  /* gap: 20px; */
+}
+
+button{
+  height: 40px;
+  color: white;
+  padding-top: -5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: blue;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+h2{
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: 40px;
+}
+
+h4{
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+h3{
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+p{
+  margin-left: 20px;
+}
+
+img{
+  height: 15px;
+  width:15px;
+  padding-top: 5px;
+  padding-right: 2px;
+}
+
+.chartfriends{
+  height: 100vh;
+  width: 30%;
+  background-color: red;
+
+}
+.user{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+video{
+    position: fixed;
+    top: 20px;
+    right: 0;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    transform: scaleX(-1);
+    width: 70%;
+    /* height: 80vh; */
+}
+.controls button{
+  margin-top: 90vh;
+  margin-left: 90vh;
+  z-index: 1;
+}
+
+.createcall{
+  display: flex;
+}
+
+.stream-controls{
+  margin-top: 85vh;
+}
+
+.video-section {
+  flex: 3;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f9f9f9;
+  border-left: 1px solid #ddd;
+}
+  
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+

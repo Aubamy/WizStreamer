@@ -1,0 +1,192 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.livestream-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.livestream-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #333;
+}
+
+.live-badge {
+  background: red;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.live-timer {
+  color: #0ff;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.stream-title {
+  font-size: 18px;
+  color: #fff;
+}
+
+.video-wrapper {
+  flex: 1;
+  left: 0;
+  position: relative;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-player {
+  width: 70%;
+  height: 90%;
+  object-fit: cover;
+  margin-top: 30px;
+  border: none;
+  left: 0;
+} 
+
+video{
+  border: none;
+}
+.stream-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.start-btn,
+.stop-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.start-btn {
+  background: #2563eb;
+}
+
+.stop-btn {
+  background: #dc2626;
+}
+
+.chat-panel {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 300px;
+  height: calc(100% - 60px);
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #333;
+}
+
+.chat-header {
+  background: #111;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #333;
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.chat-message {
+  margin-bottom: 6px;
+}
+
+.sticker-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+  gap: 4px;
+  border-top: 1px solid #333;
+}
+
+.sticker-row button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #333;
+  background: #111;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #222;
+  color: white;
+}
+
+.chat-input button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+
+.Content{
+  position: fixed;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.camara-section{
+  height: 100vh;
+  width: 70%;
+  border: 1px solid white;
+}
+
+.chat-section{
+  height: 100vh;
+  width: 30%;
+  border: 1px solid white;
+}
+
+.Content{
+  justify-content: flex-start;
+}
+
+.livestream-header button{
+  height: 24px;
+  width: 50px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-left: 500px;
+}
