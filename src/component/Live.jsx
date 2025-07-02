@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
+import Peer from 'peerjs';
 import '../css/livestream.css';
 import Navigation from './Navigation';
+import { Link } from 'react-router-dom';
 
-export default function Live(){
+export default function Live() {
   const videoRef = useRef(null);
+  const peerRef = useRef(null);
+  const connectionsRef = useRef([]);
   const [stream, setStream] = useState(null);
   const [isStreaming, setIsStreaming] = useState(false);
   const [startTime, setStartTime] = useState(null);
@@ -19,6 +23,24 @@ export default function Live(){
       videoRef.current.srcObject = mediaStream;
       setIsStreaming(true);
       setStartTime(Date.now());
+
+      const peer = new Peer('streamer1');
+      peerRef.current = peer;
+
+      peer.on('open', (id) => {
+        console.log('Streamer Peer ID:', id);
+      });
+
+      peer.on('call', (call) => {
+        call.answer(mediaStream);
+      });
+
+      peer.on('connection', (conn) => {
+        connectionsRef.current.push(conn);
+        conn.on('data', (msg) => {
+          setMessages(prev => [...prev, { id: Date.now(), text: `Viewer: ${msg}` }]);
+        });
+      });
     } catch (error) {
       console.error('Stream error:', error);
     }
@@ -29,6 +51,7 @@ export default function Live(){
     setStream(null);
     setIsStreaming(false);
     setElapsedTime('00:00');
+    peerRef.current?.destroy();
   };
 
   useEffect(() => {
@@ -46,7 +69,8 @@ export default function Live(){
 
   const handleSendMessage = () => {
     if (!chatInput.trim()) return;
-    setMessages(prev => [...prev, { id: Date.now(), text: chatInput }]);
+    connectionsRef.current.forEach(conn => conn.send(chatInput));
+    setMessages(prev => [...prev, { id: Date.now(), text: `You: ${chatInput}` }]);
     setChatInput('');
   };
 
@@ -54,25 +78,23 @@ export default function Live(){
     setChatInput(prev => prev + emoji);
   };
 
-const{
-     createcallClick,
-     audioroomClick,
-     livestreamClick,
-     chartClickl,
-     dashboardClick
+  const {
+    createcallClick,
+    audioroomClick,
+    livestreamClick,
+    chartClickl,
+    dashboardClick
   } = Navigation();
 
-
-    return(
-
-        <>
-
-<div className="livestream-page">
+  return (
+    <div className="livestream-page">
       <header className="livestream-header">
         <span className="live-badge">LIVE</span>
         <span className="live-timer">{elapsedTime}</span>
         <h1 className="stream-title">Livestream Event</h1>
-        <button onClick={audioroomClick}>Back</button>
+        <Link to={'/dashboard'}>
+          <button>Back</button>
+        </Link>
       </header>
 
       <div className="video-wrapper">
@@ -110,8 +132,5 @@ const{
         </div>
       </aside>
     </div>
-
-
-        </>
-    )
+  );
 }

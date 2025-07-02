@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import '../css/home.css';
 import '../css/dashboard.css';
 import Navigation from '../component/Navigation';
+import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
   const [modalContent, setModalContent] = useState(null);
@@ -14,14 +15,15 @@ export default function Dashboard() {
     audioroomClick,
     livestreamClick,
     chartClick,
-    overviewClick
+    overviewClick,
+    loginClick
   } = Navigation();
 
   return (
     <div className="main-dashboard">
-      <aside className="sidebar">
+      <aside className="main-sidebar">
         <div className="sidebar-header">
-          <h2>🔒 WIZ STREAMEER</h2>
+          <h2> WIZ STREAMEER</h2>
         </div>
         <nav className="sidebar-nav">
           <ul>
@@ -32,7 +34,10 @@ export default function Dashboard() {
               🎥 Video & Audio
               <ul className="sub-nav">
                 <li className="sub-nav-item" onClick={overviewClick}>📊 Overview</li>
-                <li className="sub-nav-item">📞 Call Types</li>
+                <Link to={'/viewer'}>
+                  <li className="sub-nav-item">📞 Call Types</li>
+                </Link>
+                
               </ul>
             </li>
           </ul>
@@ -58,6 +63,10 @@ export default function Dashboard() {
           <h2>🔑 App Access Keys</h2>
           <p>Manage your API access securely from here.</p>
         </section>
+
+        <div className="start">
+          <button onClick={loginClick}>Get Started📞</button>
+        </div>
       </main>
 
       {modalContent && (

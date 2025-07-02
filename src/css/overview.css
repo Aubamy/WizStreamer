@@ -1,8 +1,10 @@
+/* overview.css */
+
 .overview-container {
-  padding: 20px;
-  background: #000;
+  padding: 40px;
+  background-color: #f9faff;
+  font-family: 'Segoe UI', sans-serif;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
 }
 
 .overview-header {
@@ -14,60 +16,76 @@
 
 .overview-header h1 {
   font-size: 28px;
+  color: #1f2937;
 }
 
 .go-live-btn {
-  padding: 10px 20px;
-  background-color: #0f017a;
-  color: white;
+  background-color: #1e40af;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.go-live-btn:hover {
+  background-color: #1c3aa9;
 }
 
 .status-cards {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 .status-card {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
   flex: 1;
   min-width: 200px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
   display: flex;
   align-items: center;
   gap: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-4px);
 }
 
 .status-card h3 {
   margin: 0;
   font-size: 18px;
+  color: #111827;
 }
 
 .status-card p {
   margin: 4px 0 0;
-  color: #555;
+  color: #6b7280;
 }
 
 .status-card.live {
-  border-left: 5px solid red;
+  border-left: 5px solid #ef4444;
 }
 
 .status-card.scheduled {
-  border-left: 5px solid orange;
+  border-left: 5px solid #f59e0b;
 }
 
 .status-card.past {
-  border-left: 5px solid green;
+  border-left: 5px solid #10b981;
 }
 
 .upcoming-section h2 {
-  margin-bottom: 10px;
+  font-size: 20px;
+  color: #1f2937;
+  margin-bottom: 15px;
 }
 
 .upcoming-section ul {
@@ -76,11 +94,27 @@
 }
 
 .upcoming-section li {
-  padding: 10px;
-  background: white;
-  border-radius: 6px;
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.upcoming-section li:hover {
+  background: #f3f4f6;
+}
+
+.upcoming-section li strong {
+  font-size: 16px;
+  color: #111827;
+}
+
+.upcoming-section li span {
+  color: #6b7280;
+  font-size: 14px;
 }

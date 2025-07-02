@@ -9,22 +9,29 @@ import Dashboard from './page/Dashboard.jsx';
 import MessagePage from './page/Messagepage.jsx';
 import Overview from './page/Overview.jsx';
 import Chart from './page/Chart.jsx';
-// import Try from './page/Try.jsx';
+import Login from './page/Login.jsx';
 import './css/home.css';
+import EntryPage from './page/EntryPage.jsx';
+import SignForm from './page/SignForm.jsx'
+import StreamerPage from './page/StreamerPage.jsx';
+import Viewer from './page/Viewer.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/home' element={<Home/>}/>
-      <Route path="/callpage" element={<CallPage />} />
-      {/* <Route path="*" element={<p>Invalid link</p>} /> */}
-      <Route path='/audioroom' element={<Audioroom/>}/>
-      <Route path='/livestream' element={<Livestream/>}/>
-      <Route path='/' element={<Dashboard/>}/>
-      <Route path='/chart' element={<Chart/>}/>
-      <Route path='/messagePage' element={<MessagePage/>}/>
-      <Route path='/overview' element={<Overview/>}/>
-      {/* <Route path='/try' element={<Try/>}/> */}
+      <Route path="/" element={<EntryPage/>}/>
+      <Route path="/streamerpage" element={<StreamerPage />} />
+      <Route path="/viewer" element={<Viewer />} />
+      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/callPage" element={<CallPage />} /> {/* ✅ Dynamic call link */}
+      <Route path="/audioroom" element={<Audioroom />} />
+      <Route path="/livestream" element={<Livestream />} />
+      <Route path="/chart" element={<Chart />} />
+      <Route path="/messagePage" element={<MessagePage />} />
+      <Route path="/overview" element={<Overview />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signform" element={<SignForm />} />
     </Routes>
   </BrowserRouter>
 );

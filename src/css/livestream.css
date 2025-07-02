@@ -168,13 +168,13 @@ video{
 .camara-section{
   height: 100vh;
   width: 70%;
-  border: 1px solid white;
+  border: none;
 }
 
 .chat-section{
   height: 100vh;
   width: 30%;
-  border: 1px solid white;
+  border: none;
 }
 
 .Content{

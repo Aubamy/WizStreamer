@@ -22,15 +22,22 @@ export default function Navigation() {
     console.log('Navigating to chart');
     navigate('/chart');
   };
-   const dashboardClick = () => {
-    console.log('Navigating to dashboard');
-    navigate('/dashboard');
-  };
-
+   
   const overviewClick = () => {
     console.log('Navigating to overview');
     navigate('/overview');
   };
+
+  const dashboardClick = () => {
+    console.log ('Navigating to dashboard');
+    navigate('/dashboard');
+  };
+
+  const loginClick = () => {
+    console.log('Navigating to login');
+    navigate('/login');
+  }
+
 
   return{
     callpageClick,
@@ -39,5 +46,6 @@ export default function Navigation() {
     chartClick,
     dashboardClick,
     overviewClick,
+    loginClick,
   }
 }

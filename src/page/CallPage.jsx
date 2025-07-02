@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 
-const APP_ID = 'YOUR_AGORA_APP_ID'; // 🔐 Replace with your actual Agora App ID
-const CHANNEL = 'test-channel';     // 🔄 Use a dynamic name if needed
-const TOKEN = null;                 // 🔐 Use token if your project requires it
+const APP_ID = 'dae228839d7b4d05adb0fdd14505c12b'; // Your Agora App ID
+const CHANNEL = 'test-channel';
+const TOKEN = null;
 
 export default function CallPage() {
   const clientRef = useRef(null);
@@ -14,9 +14,10 @@ export default function CallPage() {
   const [remoteTrack, setRemoteTrack] = useState(null);
   const [micOn, setMicOn] = useState(true);
   const [camOn, setCamOn] = useState(true);
+  const [copySuccess, setCopySuccess] = useState('');
 
   useEffect(() => {
-    AgoraRTC.setLogLevel(AgoraRTC.LOG_NONE); // 🔕 Disable logs
+    AgoraRTC.setLogLevel(AgoraRTC.LOG_NONE);
 
     const initCall = async () => {
       clientRef.current = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
@@ -68,6 +69,14 @@ export default function CallPage() {
     window.location.reload();
   };
 
+  const copyLink = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => setCopySuccess('✅ Link copied!'))
+      .catch(() => setCopySuccess('❌ Failed to copy'));
+    
+    setTimeout(() => setCopySuccess(''), 3000); // Reset after 3 seconds
+  };
+
   return (
     <div style={styles.page}>
       <div style={styles.videoWrapper}>
@@ -85,6 +94,10 @@ export default function CallPage() {
         <button onClick={leaveCall} style={{ ...styles.controlBtn, background: '#e11d48' }}>
           ❌ Leave
         </button>
+        <button onClick={copyLink} style={{ ...styles.controlBtn, background: '#22c55e' }}>
+          🔗 Share Link
+        </button>
+        {copySuccess && <span style={{ color: '#22c55e', marginLeft: 10 }}>{copySuccess}</span>}
       </div>
     </div>
   );
@@ -99,7 +112,6 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
     padding: '10px',
   },
   videoWrapper: {
@@ -127,6 +139,7 @@ const styles = {
     display: 'flex',
     gap: '20px',
     marginTop: '20px',
+    flexWrap: 'wrap',
   },
   controlBtn: {
     background: '#2563eb',

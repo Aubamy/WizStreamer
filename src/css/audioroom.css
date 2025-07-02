@@ -1,5 +1,7 @@
+/* audioroom.css */
+
 .page {
-  background-color: #0f172a;
+  background: #0f172a;
   color: #fff;
   height: 100vh;
   padding: 40px 20px;
@@ -9,72 +11,78 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
+  font-weight: bold;
+  color: #38bdf8;
   text-align: center;
 }
 
 .participant-list {
-  background-color: #1e293b;
-  border-radius: 12px;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  min-height: 200px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  justify-content: center;
+  max-width: 600px;
 }
 
 .user-tile {
-  background-color: #334155;
-  border-radius: 8px;
-  padding: 10px 15px;
+  background: #1e293b;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 1rem;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .controls {
-  margin-top: 30px;
   display: flex;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  background-color: #2563eb;
+  background: #38bdf8;
   color: white;
   border: none;
-  cursor: pointer;
+  padding: 12px 20px;
   font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #0ea5e9;
 }
 
 .btn.leave {
-  background-color: #e11d48;
+  background: #ef4444;
 }
 
-/* ✅ Mobile Responsive */
-@media (max-width: 768px) {
-  .page {
-    padding: 20px 15px;
-  }
+.btn.leave:hover {
+  background: #dc2626;
+}
 
-  .title {
-    font-size: 1.5rem;
-  }
-
+@media (max-width: 600px) {
   .controls {
     flex-direction: column;
-    gap: 10px;
+    width: 100%;
   }
 
   .btn {
-    width: 100%;
+    width: 90%;
+    margin: auto;
   }
+}
 
-  .participant-list {
-    width: 100%;
-    min-height: 150px;
-  }
+.controls {
+  display: flex;
+  margin-top: -400px;
+  gap: 16px;
+  flex-wrap: nowrap; /* ❌ prevent wrapping at all */
+  justify-content: center;
 }

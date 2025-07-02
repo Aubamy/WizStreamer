@@ -1,0 +1,193 @@
+/* livestreamEntry.css */
+
+.livestream-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.livestream-image-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.livestream-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.livestream-caption {
+  position: absolute;
+  top: 300px;
+  bottom: 20px;
+  left: 30px;
+  font-size: 1.8rem;
+  color: #fff;
+  /* background: rgba(0, 0, 0, 0.4); */
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.livestream-signin-section {
+  flex: 1;
+  background: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.signin-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.signin-card h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.signin-subtext {
+  margin-bottom: 25px;
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signin-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.signin-form button {
+  padding: 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.signin-form button:hover {
+  background-color: #2563eb;
+}
+
+.signin-footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.signin-footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.signin-footer a:hover {
+  text-decoration: underline;
+}
+
+.form-toggle-link {
+  color: #1e3c72;
+  font-weight: bold;
+  cursor: pointer;
+}
+.form-toggle-link:hover {
+  text-decoration: underline;
+}
+
+
+.footer-text {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 14px;
+  color: #777;
+}
+
+
+.social-icons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.or-text {
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.icon.google {
+  background-color: #db4437;
+}
+
+.icon.facebook {
+  background-color: #4267B2;
+}
+
+.icon.twitter {
+  background-color: #1da1f2;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .livestream-container {
+    flex-direction: column;
+  }
+
+  .livestream-image-section,
+  .livestream-signin-section {
+    flex: none;
+    width: 100%;
+    height: 50vh;
+  }
+
+  .livestream-caption {
+    font-size: 1.2rem;
+    left: 20px;
+    right: 20px;
+  }
+
+  .signin-card {
+    padding: 30px 20px;
+  }
+}
