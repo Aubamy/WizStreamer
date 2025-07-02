@@ -6,7 +6,7 @@ import Audioroom from './page/Audioroom.jsx';
 import CallPage from './page/CallPage.jsx';
 import Livestream from './page/Livestream.jsx';
 import Dashboard from './page/Dashboard.jsx';
-import MessagePage from './page/Messagepage.jsx';
+import MessagePage from './page/MessagePage.jsx'
 import Overview from './page/Overview.jsx';
 import Chart from './page/Chart.jsx';
 import Login from './page/Login.jsx';
