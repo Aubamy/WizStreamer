@@ -41,9 +41,9 @@ export default function Dashboard() {
               🎥 Video & Audio
               <ul className="sub-nav">
                 <li className="sub-nav-item" onClick={overviewClick}>📊 Overview</li>
-                <Link to={'/viewer'}>
-                  <li className="sub-nav-item">📞 Call Types</li>
-                </Link>
+                {/* <Link to={'/viewer'}> */}
+                  <li className="sub-nav-item" to={'/viewer'}>📞 Watch Stream</li>
+                {/* </Link> */}
               </ul>
             </li>
           </ul>

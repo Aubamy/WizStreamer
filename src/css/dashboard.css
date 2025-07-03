@@ -187,6 +187,11 @@ body, html {
   display: none;            /* Hide by default */
 }
 
+link{
+  text-decoration: none;
+  list-style: none;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .main-dashboard {
@@ -217,7 +222,7 @@ body, html {
     left: -15px;
     z-index: 1100;
     font-size: 2rem;
-    background-color: #0f172a;
+    background-color: none;
     color: #38bdf8;
     border: none;
     cursor: pointer;
