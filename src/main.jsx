@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/viewer" element={<Viewer />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/callpage" element={<CallPage />} />
+      <Route path="/call/:channelId" element={<CallPage />} />
       <Route path="/audioroom" element={<Audioroom />} />
       <Route path="/livestream" element={<Livestream />} />
       <Route path="/chart" element={<Chart />} />

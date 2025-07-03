@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
+import { useParams } from 'react-router-dom';
 
 const APP_ID = 'dae228839d7b4d05adb0fdd14505c12b';
-const CHANNEL = 'test-channel'; // Static channel
 const TOKEN = null;
 
 export default function CallPage() {
+  const { channelId } = useParams();
+  const CHANNEL = channelId || 'test-channel';
+
   const clientRef = useRef(null);
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -36,6 +39,12 @@ export default function CallPage() {
         }
       });
 
+      client.on('user-unpublished', () => {
+        if (remoteVideoRef.current) {
+          remoteVideoRef.current.innerHTML = '';
+        }
+      });
+
       await client.join(APP_ID, CHANNEL, TOKEN || null, null);
       await client.publish([microphoneTrack, cameraTrack]);
     };
@@ -45,7 +54,7 @@ export default function CallPage() {
     return () => {
       leaveCall();
     };
-  }, []);
+  }, [CHANNEL]);
 
   const toggleMic = () => {
     const micTrack = localTracksRef.current[0];
@@ -70,7 +79,7 @@ export default function CallPage() {
     } catch (e) {
       console.error('Error leaving call:', e);
     } finally {
-      window.location.reload();
+      window.location.href = '/';
     }
   };
 
@@ -106,9 +115,6 @@ export default function CallPage() {
     </div>
   );
 }
-
-
-
 
 const styles = {
   page: {
