@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 
-const APP_ID = 'dae228839d7b4d05adb0fdd14505c12b'; // Your Agora App ID
-const CHANNEL = 'test-channel';
+const APP_ID = 'dae228839d7b4d05adb0fdd14505c12b';
+const CHANNEL = 'test-channel'; // Static channel
 const TOKEN = null;
 
 export default function CallPage() {
   const clientRef = useRef(null);
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
-  const [joined, setJoined] = useState(false);
-  const [localTrack, setLocalTrack] = useState(null);
-  const [remoteTrack, setRemoteTrack] = useState(null);
+  const localTracksRef = useRef([]);
   const [micOn, setMicOn] = useState(true);
   const [camOn, setCamOn] = useState(true);
   const [copySuccess, setCopySuccess] = useState('');
@@ -20,68 +18,74 @@ export default function CallPage() {
     AgoraRTC.setLogLevel(AgoraRTC.LOG_NONE);
 
     const initCall = async () => {
-      clientRef.current = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+      const client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });
+      clientRef.current = client;
 
       const [microphoneTrack, cameraTrack] = await AgoraRTC.createMicrophoneAndCameraTracks();
-      setLocalTrack(cameraTrack);
+      localTracksRef.current = [microphoneTrack, cameraTrack];
 
-      localVideoRef.current && cameraTrack.play(localVideoRef.current);
+      cameraTrack.play(localVideoRef.current);
 
-      clientRef.current.on('user-published', async (user, mediaType) => {
-        await clientRef.current.subscribe(user, mediaType);
+      client.on('user-published', async (user, mediaType) => {
+        await client.subscribe(user, mediaType);
         if (mediaType === 'video') {
-          const remoteTrack = user.videoTrack;
-          setRemoteTrack(remoteTrack);
-          remoteVideoRef.current && remoteTrack.play(remoteVideoRef.current);
+          user.videoTrack.play(remoteVideoRef.current);
+        }
+        if (mediaType === 'audio') {
+          user.audioTrack.play();
         }
       });
 
-      await clientRef.current.join(APP_ID, CHANNEL, TOKEN || null, null);
-      await clientRef.current.publish([microphoneTrack, cameraTrack]);
-      setJoined(true);
+      await client.join(APP_ID, CHANNEL, TOKEN || null, null);
+      await client.publish([microphoneTrack, cameraTrack]);
     };
 
     initCall();
 
     return () => {
-      if (clientRef.current) {
-        clientRef.current.leave();
-        AgoraRTC.createMicrophoneAndCameraTracks().then(([mic, cam]) => {
-          mic.close();
-          cam.close();
-        });
-      }
+      leaveCall();
     };
   }, []);
 
   const toggleMic = () => {
-    clientRef.current.localTracks[0].setEnabled(!micOn);
-    setMicOn(!micOn);
+    const micTrack = localTracksRef.current[0];
+    if (micTrack) {
+      micTrack.setEnabled(!micOn);
+      setMicOn(!micOn);
+    }
   };
 
   const toggleCam = () => {
-    clientRef.current.localTracks[1].setEnabled(!camOn);
-    setCamOn(!camOn);
+    const camTrack = localTracksRef.current[1];
+    if (camTrack) {
+      camTrack.setEnabled(!camOn);
+      setCamOn(!camOn);
+    }
   };
 
   const leaveCall = async () => {
-    await clientRef.current.leave();
-    window.location.reload();
+    try {
+      await clientRef.current?.leave();
+      localTracksRef.current.forEach(track => track.close());
+    } catch (e) {
+      console.error('Error leaving call:', e);
+    } finally {
+      window.location.reload();
+    }
   };
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href)
       .then(() => setCopySuccess('✅ Link copied!'))
-      .catch(() => setCopySuccess('❌ Failed to copy'));
-    
-    setTimeout(() => setCopySuccess(''), 3000); // Reset after 3 seconds
+      .catch(() => setCopySuccess('❌ Failed'));
+    setTimeout(() => setCopySuccess(''), 3000);
   };
 
   return (
     <div style={styles.page}>
       <div style={styles.videoWrapper}>
-        <div ref={localVideoRef} style={styles.localVideo}></div>
         <div ref={remoteVideoRef} style={styles.remoteVideo}></div>
+        <div ref={localVideoRef} style={styles.localVideo}></div>
       </div>
 
       <div style={styles.controls}>
@@ -103,6 +107,9 @@ export default function CallPage() {
   );
 }
 
+
+
+
 const styles = {
   page: {
     height: '100vh',
@@ -115,25 +122,29 @@ const styles = {
     padding: '10px',
   },
   videoWrapper: {
+    position: 'relative',
+    width: '100%',
+    height: '80%',
     display: 'flex',
-    gap: '10px',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',
-    height: '80%',
-    width: '100%',
-  },
-  localVideo: {
-    width: '300px',
-    height: '200px',
-    background: '#1e293b',
-    borderRadius: '12px',
   },
   remoteVideo: {
-    width: '60vw',
-    height: '60vh',
+    width: '100%',
+    height: '100%',
     background: '#334155',
     borderRadius: '12px',
+  },
+  localVideo: {
+    position: 'absolute',
+    bottom: '20px',
+    right: '20px',
+    width: '240px',
+    height: '160px',
+    background: '#1e293b',
+    border: '2px solid white',
+    borderRadius: '12px',
+    zIndex: 10,
   },
   controls: {
     display: 'flex',
