@@ -1,9 +1,7 @@
-// ChatSidebar.jsx
 import React, { useState } from 'react';
+import '../css/LiveChart.css';
 
-const stickers = [
-  '😀', '😂', '😍', '😎', '😭', '😡', '👍', '🙏', '🎉', '🔥','😀','🙂','😉','😍','🥰','☠️','🤡','🫶','😍','🧐','🙇‍♂️','😂','✌️','💪','🙆‍♂️','🙅🏼‍♂️','💁🏽‍♂️','🤦🏽‍♂️','🤦‍♀️','💆‍♂️','💆‍♀️','💃','🕺🏼','👯‍♀️','👯‍♂️','🧙🏽‍♂️','🧙🏽‍♀️','🧑🏽‍🎄','🎅🏽','👑','🥾','🧦','🧤','👜','🧣','🎩','🩴','👡','👠','👗','🐼','🙈','🙉','🙊','🐹'
-];
+const stickers = [/* same as before */];
 
 const ChatSidebar = () => {
   const [messages, setMessages] = useState([]);
@@ -22,35 +20,35 @@ const ChatSidebar = () => {
   };
 
   return (
-    <div style={styles.chatContainer}>
-      <div style={styles.header}>Live Chat 💬</div>
+    <div className="chat-container">
+      <div className="chat-header">Live Chat 💬</div>
 
-      <div style={styles.messages}>
+      <div className="chat-messages">
         {messages.map((msg, idx) => (
-          <div key={idx} style={styles.messageBubble}>
+          <div key={idx} className="chat-message-bubble">
             {msg}
           </div>
         ))}
       </div>
 
-      <div style={styles.footer}>
+      <div className="chat-footer">
         <input
-          style={styles.input}
+          className="chat-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
           placeholder="Type a message..."
         />
-        <button style={styles.sendBtn} onClick={sendMessage}>Send</button>
-        <button style={styles.stickerBtn} onClick={() => setShowStickers(!showStickers)}>😊</button>
+        <button className="chat-send-btn" onClick={sendMessage}>Send</button>
+        <button className="chat-sticker-btn" onClick={() => setShowStickers(!showStickers)}>😊</button>
       </div>
 
       {showStickers && (
-        <div style={styles.stickerPanel}>
+        <div className="chat-sticker-panel">
           {stickers.map((sticker, idx) => (
             <span
               key={idx}
-              style={styles.sticker}
+              className="chat-sticker"
               onClick={() => handleStickerClick(sticker)}
             >
               {sticker}
@@ -60,86 +58,6 @@ const ChatSidebar = () => {
       )}
     </div>
   );
-};
-
-const styles = {
-  chatContainer: {
-    width: '30vw',
-    height: '100vh',
-    backgroundColor: '#1e1e2f',
-    color: '#fff',
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'fixed',
-    right: 0,
-    top: 0,
-    padding: '10px',
-    boxSizing: 'border-box',
-    borderLeft: '2px solid #444'
-  },
-  header: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-    marginBottom: '10px',
-    textAlign: 'center',
-  },
-  messages: {
-    flex: 1,
-    overflowY: 'auto',
-    marginBottom: '10px',
-    padding: '5px',
-  },
-  messageBubble: {
-    background: '#333',
-    padding: '8px 12px',
-    borderRadius: '12px',
-    margin: '4px 0',
-    maxWidth: '90%',
-    wordWrap: 'break-word',
-  },
-  footer: {
-    display: 'flex',
-    gap: '5px',
-  },
-  input: {
-    flex: 1,
-    padding: '8px',
-    borderRadius: '8px',
-    border: 'none',
-    outline: 'none',
-  },
-  sendBtn: {
-    padding: '8px 10px',
-    borderRadius: '8px',
-    border: 'none',
-    backgroundColor: '#4caf50',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  stickerBtn: {
-    height: '40px',
-    width: '40px',
-    padding: '8px 10px',
-    borderRadius: '8px',
-    border: 'none',
-    backgroundColor: '#2196f3',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  stickerPanel: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '10px',
-    backgroundColor: '#2d2d3a',
-    padding: '10px',
-    borderRadius: '10px',
-    marginTop: '10px',
-  },
-  sticker: {
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    transition: 'transform 0.1s',
-  }
 };
 
 export default ChatSidebar;

@@ -108,7 +108,7 @@ export default function Live() {
         </div>
       </div>
 
-      <aside className="chat-panel">
+      {/* <aside className="chat-panel">
         <div className="chat-header">Live Chat</div>
         <div className="chat-box">
           {messages.map(msg => (
@@ -130,7 +130,7 @@ export default function Live() {
           />
           <button onClick={handleSendMessage}>Send</button>
         </div>
-      </aside>
+      </aside> */}
     </div>
   );
 }
