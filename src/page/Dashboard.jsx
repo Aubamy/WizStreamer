@@ -1,14 +1,15 @@
-// Dashboard.jsx
 import React, { useState } from 'react';
-// import '../css/home.css';
 import '../css/dashboard.css';
 import Navigation from '../component/Navigation';
 import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
   const [modalContent, setModalContent] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // 👈 Sidebar toggle
+
   const openModal = (content) => setModalContent(content);
   const closeModal = () => setModalContent(null);
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen); // 👈 Toggle
 
   const {
     callpageClick,
@@ -21,7 +22,13 @@ export default function Dashboard() {
 
   return (
     <div className="main-dashboard">
-      <aside className="main-sidebar">
+      {/* Mobile Menu Button */}
+      <button className="mobile-menu-btn" onClick={toggleSidebar}>
+        ☰
+      </button>
+
+      {/* Sidebar */}
+      <aside className={`main-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h2> WIZ STREAMEER</h2>
         </div>
@@ -37,14 +44,14 @@ export default function Dashboard() {
                 <Link to={'/viewer'}>
                   <li className="sub-nav-item">📞 Call Types</li>
                 </Link>
-                
               </ul>
             </li>
           </ul>
         </nav>
       </aside>
 
-      <main className="dashboard-content">
+      {/* Dashboard Content */}
+      <main className="dashboard-content" onClick={() => setSidebarOpen(false)}>
         <header className="header">
           <h1>🎧 Video & Audio Overview</h1>
         </header>
