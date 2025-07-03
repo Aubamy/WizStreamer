@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import '../css/dashboard.css';
 import Navigation from '../component/Navigation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const [modalContent, setModalContent] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const openModal = (content) => setModalContent(content);
   const closeModal = () => setModalContent(null);
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   const {
-    callpageClick,
     audioroomClick,
     livestreamClick,
     chartClick,
     overviewClick,
     loginClick
   } = Navigation();
+
+  // 👇 This handles Create Call
+  const handleCreateCall = () => {
+    const channelId = Math.random().toString(36).substring(2, 10); // random 8-char ID
+    navigate(`/call/${channelId}`);
+  };
 
   return (
     <div className="main-dashboard">
@@ -55,7 +61,7 @@ export default function Dashboard() {
           <h2>Getting Started with Video & Audio</h2>
           <p>Launch a new video call, audio room, or livestream with ease using our tools.</p>
           <div className="button-group">
-            <button className="action-btn" onClick={callpageClick}>🎥 Create Call</button>
+            <button className="action-btn" onClick={handleCreateCall}>🎥 Create Call</button>
             <button className="action-btn" onClick={audioroomClick}>🎙️ Create Audio Room</button>
             <button className="action-btn" onClick={livestreamClick}>📡 Create Livestream</button>
           </div>
