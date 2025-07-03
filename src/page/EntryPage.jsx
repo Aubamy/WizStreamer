@@ -20,6 +20,7 @@ export default function EntryPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (isRegistering) {
       const user = {
         username: formData.username,
@@ -33,7 +34,8 @@ export default function EntryPage() {
       const savedUser = JSON.parse(localStorage.getItem('wiz_user'));
       if (
         savedUser &&
-        (formData.identifier === savedUser.username || formData.identifier === savedUser.email) &&
+        (formData.identifier === savedUser.username ||
+         formData.identifier === savedUser.email) &&
         formData.password === savedUser.password
       ) {
         alert(`Welcome back, ${savedUser.username}`);
@@ -48,28 +50,64 @@ export default function EntryPage() {
     <div className="entry-container">
       <div className="entry-image">
         <img src={stream} alt="Livestream" />
-        <div className="caption">Stream your world in real-time 🎥</div>
+        <div className="entry-caption">Stream your world in real-time 🎥</div>
       </div>
+
       <div className="entry-form-section">
         <div className="entry-card">
           <h2>{isRegistering ? 'Create an Account' : 'Welcome to Wiz Stream'}</h2>
           <p className="entry-subtext">
-            {isRegistering ? 'Register to start your stream' : 'Sign in to join or start your stream'}
+            {isRegistering
+              ? 'Register to start your stream'
+              : 'Sign in to join or start your stream'}
           </p>
+
           <form onSubmit={handleSubmit} className="entry-form">
             {isRegistering ? (
               <>
-                <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
-                <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-                <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                />
               </>
             ) : (
               <>
-                <input type="text" name="identifier" placeholder="Username or Email" onChange={handleChange} required />
-                <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+                <input
+                  type="text"
+                  name="identifier"
+                  placeholder="Username or Email"
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                />
               </>
             )}
-            <button type="submit">{isRegistering ? 'Register' : 'Sign In'}</button>
+            <button type="submit" className="entry-button">
+              {isRegistering ? 'Register' : 'Sign In'}
+            </button>
           </form>
 
           <div className="social-login">
@@ -83,9 +121,15 @@ export default function EntryPage() {
 
           <div className="toggle-form">
             {isRegistering ? (
-              <p>Already have an account? <span onClick={() => setIsRegistering(false)}>Sign in</span></p>
+              <p>
+                Already have an account?{' '}
+                <span onClick={() => setIsRegistering(false)}>Sign in</span>
+              </p>
             ) : (
-              <p>Don't have an account? <span onClick={() => setIsRegistering(true)}>Register here</span></p>
+              <p>
+                Don’t have an account?{' '}
+                <span onClick={() => setIsRegistering(true)}>Register here</span>
+              </p>
             )}
           </div>
         </div>
