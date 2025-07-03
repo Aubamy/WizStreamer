@@ -6,6 +6,7 @@ export default function Chart() {
   const [activeChat, setActiveChat] = useState(null);
   const [messages, setMessages] = useState({});
   const [input, setInput] = useState('');
+  const [showStickers, setShowStickers] = useState(false);
   const user = 'You';
 
   const chats = [
@@ -16,6 +17,8 @@ export default function Chart() {
     { name: 'Daniel', avatar: 'https://i.pravatar.cc/150?img=5' }
   ];
 
+  const stickers = ['😀', '😂', '😍', '😎', '😭', '🔥', '🎉', '❤️', '👍', '😡'];
+
   const { livestreamClick } = Navigation();
 
   const formatTime = () => {
@@ -23,14 +26,14 @@ export default function Chart() {
     return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  const handleSend = () => {
-    if (input.trim() === '' || !activeChat) return;
+  const handleSend = (text = input) => {
+    if (text.trim() === '' || !activeChat) return;
 
     const newMessage = {
       user,
-      text: input,
+      text,
       time: formatTime(),
-      status: 'Delivered' // initial status
+      status: 'Delivered'
     };
 
     setMessages(prev => ({
@@ -38,7 +41,7 @@ export default function Chart() {
       [activeChat]: [...(prev[activeChat] || []), newMessage]
     }));
 
-    setInput('');
+    if (text === input) setInput('');
   };
 
   const getLastMessage = (chatName) => {
@@ -58,7 +61,10 @@ export default function Chart() {
             <div
               key={index}
               className={`chat-item ${activeChat === chat.name ? 'active' : ''}`}
-              onClick={() => setActiveChat(chat.name)}
+              onClick={() => {
+                setActiveChat(chat.name);
+                setShowStickers(false);
+              }}
             >
               <img src={chat.avatar} alt={chat.name} className="chat-avatar" />
               <div className="chat-details">
@@ -100,13 +106,35 @@ export default function Chart() {
                     <span>{msg.time}</span>
                     {msg.user === user && (
                       <span style={{ fontStyle: 'italic' }}>
-                        {i === arr.length - 1 ? 'Seen' : msg.status}
+                        {i === arr.length - 1 ? 'sent' : msg.status}
                       </span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Sticker toggle button */}
+            <div className="sticker-toggle-bar">
+              <button className="toggle-sticker-btn" onClick={() => setShowStickers(!showStickers)}>
+                {showStickers ? '🙈 Hide Stickers' : '😊 Stickers'}
+              </button>
+            </div>
+
+            {/* Sticker panel */}
+            {showStickers && (
+              <div className="sticker-panel">
+                {stickers.map((sticker, index) => (
+                  <button
+                    key={index}
+                    className="sticker-btn"
+                    onClick={() => handleSend(sticker)}
+                  >
+                    {sticker}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="chat-input-bar">
               <input
@@ -117,7 +145,7 @@ export default function Chart() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               />
-              <button onClick={handleSend} className="send-btn">Send</button>
+              <button onClick={() => handleSend()} className="send-btn">Send</button>
             </div>
           </>
         )}
