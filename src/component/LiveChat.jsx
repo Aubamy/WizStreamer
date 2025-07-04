@@ -4,59 +4,63 @@ import React, { useState } from 'react';
 import '../css/LiveChart.css';
 
 // Define an array of sticker emojis
-const stickers = [/* same as before */]; // You can fill in: '😂', '🔥', etc.
+const stickers = ['😂', '🔥', '❤️', '👍', '🎉', '😎', '🙌', '😭'];
 
 // Define the ChatSidebar component
 const ChatSidebar = () => {
-  const [messages, setMessages] = useState([]); // State to hold list of chat messages
-  const [input, setInput] = useState(''); // State to hold current input text
-  const [showStickers, setShowStickers] = useState(false); // Toggle to show/hide sticker panel
+  const [messages, setMessages] = useState([]); // State to hold chat messages
+  const [input, setInput] = useState('');       // State for input text
+  const [showStickers, setShowStickers] = useState(false); // Show/hide sticker panel
 
-  // Function to send a message
+  // Send message function
   const sendMessage = () => {
-    if (input.trim() === '') return; // Do not send if input is empty
-    setMessages([...messages, input]); // Add new message to messages array
-    setInput(''); // Clear input field
-    setShowStickers(false); // Hide sticker panel after sending
+    if (input.trim() === '') return;
+    setMessages([...messages, input]);
+    setInput('');
+    setShowStickers(false);
   };
 
-  // Function to add a sticker emoji to input field
+  // Add sticker to input field (not send directly)
   const handleStickerClick = (sticker) => {
-    setInput((prev) => prev + sticker); // Append selected emoji to current input
+    setInput((prevInput) => prevInput + sticker);
   };
 
-  // JSX to render the chat sidebar UI
   return (
-    <div className="chat-container"> {/* Main chat container */}
-      <div className="chat-header">Live Chat 💬</div> {/* Header title */}
+    <div className="chat-container">
+      <div className="chat-header">Live Chat 💬</div>
 
-      <div className="chat-messages"> {/* Message list section */}
-        {messages.map((msg, idx) => ( // Loop through all messages
+      <div className="chat-messages">
+        {messages.map((msg, idx) => (
           <div key={idx} className="chat-message-bubble">
-            {msg} {/* Render each message */}
+            {msg}
           </div>
         ))}
       </div>
 
-      <div className="chat-footer"> {/* Footer with input and buttons */}
+      <div className="chat-footer">
         <input
           className="chat-input"
-          value={input} // Bind input state to input field
-          onChange={(e) => setInput(e.target.value)} // Update input on change
-          onKeyDown={(e) => e.key === 'Enter' && sendMessage()} // Send on Enter key press
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
           placeholder="Type a message..."
         />
-        <button className="chat-send-btn" onClick={sendMessage}>Send</button> {/* Send button */}
-        <button className="chat-sticker-btn" onClick={() => setShowStickers(!showStickers)}>😊</button> {/* Toggle stickers */}
+        <button className="chat-send-btn" onClick={sendMessage}>Send</button>
+        <button
+          className="chat-sticker-btn"
+          onClick={() => setShowStickers(!showStickers)}
+        >
+          😊
+        </button>
       </div>
 
-      {showStickers && ( // Conditionally render sticker panel
+      {showStickers && (
         <div className="chat-sticker-panel">
-          {stickers.map((sticker, idx) => ( // Loop through all stickers
+          {stickers.map((sticker, idx) => (
             <span
               key={idx}
               className="chat-sticker"
-              onClick={() => handleStickerClick(sticker)} // Add sticker on click
+              onClick={() => handleStickerClick(sticker)}
             >
               {sticker}
             </span>
@@ -67,5 +71,4 @@ const ChatSidebar = () => {
   );
 };
 
-// Export the component so it can be used elsewhere
 export default ChatSidebar;
