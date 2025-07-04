@@ -68,7 +68,7 @@ export default function Viewer() {
         <span className="live-badge">LIVE</span> {/* Live badge */}
         <h1 className="stream-title">Watching Live</h1> {/* Title */}
         <Link to="/dashboard"> {/* Back to dashboard button */}
-          <button>Back</button>
+          <button style={{marginLeft:'1000px'}}>Back</button>
         </Link>
       </header>
 

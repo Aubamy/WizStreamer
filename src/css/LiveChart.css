@@ -92,6 +92,28 @@
   transform: scale(1.2);
 }
 
+.chat-sticker-panel {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+  border-top: 1px solid #ccc;
+  background-color: #f0f0f0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.chat-sticker {
+  font-size: 24px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.chat-sticker:hover {
+  transform: scale(1.2);
+}
+
+
 /* ✅ Responsive for mobile view */
 @media (max-width: 768px) {
   .chat-container {
