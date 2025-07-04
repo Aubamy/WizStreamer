@@ -1,88 +1,75 @@
-/* audioroom.css */
-
-.page {
-  background: #0f172a;
-  color: #fff;
-  height: 100vh;
-  padding: 40px 20px;
+.audio-room-container {
+  padding: 20px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.title {
-  font-size: 2.5rem;
+.room-title {
+  font-size: 1.8rem;
   margin-bottom: 20px;
-  font-weight: bold;
-  color: #38bdf8;
   text-align: center;
 }
 
-.participant-list {
+.participants-section {
   display: flex;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
   margin-bottom: 30px;
-  justify-content: center;
-  max-width: 600px;
 }
 
-.user-tile {
-  background: #1e293b;
-  padding: 15px 25px;
-  border-radius: 10px;
+.participant-bubble {
+  background-color: #1e293b;
+  padding: 12px 20px;
+  border-radius: 30px;
   font-size: 1rem;
-  min-width: 120px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
-.controls {
+.audio-controls {
   display: flex;
-  gap: 16px;
+  gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.btn {
-  background: #38bdf8;
-  color: white;
-  border: none;
+.audio-btn {
   padding: 12px 20px;
   font-size: 1rem;
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  background-color: #2563eb;
+  color: white;
 }
 
-.btn:hover {
-  background: #0ea5e9;
+.audio-btn.off {
+  background-color: #9ca3af;
 }
 
-.btn.leave {
-  background: #ef4444;
+.leave-btn {
+  background-color: #ef4444;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
 }
 
-.btn.leave:hover {
-  background: #dc2626;
-}
-
+/* Responsive Design */
 @media (max-width: 600px) {
-  .controls {
+  .participants-section {
     flex-direction: column;
-    width: 100%;
+    align-items: center;
   }
 
-  .btn {
-    width: 90%;
-    margin: auto;
+  .participant-bubble {
+    width: 80%;
+    text-align: center;
   }
-}
-
-.controls {
-  display: flex;
-  margin-top: -400px;
-  gap: 16px;
-  flex-wrap: nowrap; /* ❌ prevent wrapping at all */
-  justify-content: center;
 }

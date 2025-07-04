@@ -15,6 +15,8 @@ import EntryPage from './page/EntryPage.jsx';
 import SignForm from './page/SignForm.jsx';
 import StreamerPage from './page/StreamerPage.jsx';
 import Viewer from './page/Viewer.jsx';
+import Activity from './page/Activity.jsx';
+import Moderation from './page/Moderation.jsx'
 
 import './css/home.css';
 
@@ -34,6 +36,9 @@ createRoot(document.getElementById('root')).render(
       <Route path="/overview" element={<Overview />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signform" element={<SignForm />} />
+      <Route path="/activity" element={<Activity />} />
+      <Route path="/moderation" element={<Moderation/>} />
+      
     </Routes>
   </BrowserRouter>
 );

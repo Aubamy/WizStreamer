@@ -38,6 +38,21 @@ export default function Navigation() {
     navigate('/login');
   }
 
+   const viewerClick = () => {
+    console.log('Navigating to viewer');
+    navigate('/viewer');
+  };
+
+  const activityClick = () => {
+    console.log('Navigating to activity');
+    navigate('/activity');
+  }
+
+   const moderationClick = () => {
+    console.log('Navigating to moderation');
+    navigate('/moderation');
+  };
+
 
   return{
     callpageClick,
@@ -47,5 +62,8 @@ export default function Navigation() {
     dashboardClick,
     overviewClick,
     loginClick,
+    viewerClick,
+    activityClick,
+    moderationClick
   }
 }
