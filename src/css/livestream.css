@@ -91,8 +91,9 @@ body, html {
   width: 70%;
   height: 90%;
   object-fit: cover;
-  margin-top: 30px;
+  margin-top: 60px;
   border: none;
+  left: 0;
 }
 
 video {

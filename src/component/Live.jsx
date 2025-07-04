@@ -109,7 +109,7 @@ export default function Live() {
         <span className="live-timer">{elapsedTime}</span> {/* Elapsed time */}
         <h1 className="stream-title">Livestream Event</h1> {/* Stream title */}
         <Link to={'/dashboard'}>
-          <button style={{marginLeft:'500px'}}>Back</button> {/* Back to dashboard */}
+          <button style={{marginLeft:'500px', marginBottom:'30px'}}>Back</button> {/* Back to dashboard */}
         </Link>
       </header>
 
