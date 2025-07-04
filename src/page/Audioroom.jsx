@@ -1,68 +1,60 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../css/audioroom.css';
 
-export default function AudioRoom() {
-  const [participants, setParticipants] = useState(['You']);
-  const [micOn, setMicOn] = useState(false);
+export default function Audioroom() {
+  const [micOn, setMicOn] = useState(true);
+  const [participants, setParticipants] = useState([
+    { id: 1, name: 'Collins Emelumba' },
+    { id: 2, name: 'Ada' },
+    { id: 3, name: 'Daniel' },
+  ]);
   const micTrackRef = useRef(null);
 
-  // Simulate a guest joining and leaving
-  useEffect(() => {
-    const joinTimer = setTimeout(() => {
-      setParticipants((prev) => [...prev, 'Guest']);
-    }, 3000);
+  const startAudio = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      micTrackRef.current = stream.getAudioTracks()[0];
+    } catch (err) {
+      console.error('Microphone access denied:', err);
+    }
+  };
 
-    const leaveTimer = setTimeout(() => {
-      setParticipants((prev) => prev.filter((name) => name !== 'Guest'));
-    }, 10000);
-
-    return () => {
-      clearTimeout(joinTimer);
-      clearTimeout(leaveTimer);
-      micTrackRef.current?.getTracks().forEach((track) => track.stop());
-    };
-  }, []);
-
-  const toggleMic = async () => {
-    if (!micOn) {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        micTrackRef.current = stream;
-        setMicOn(true);
-      } catch (error) {
-        console.error('Mic access denied:', error);
-      }
-    } else {
-      micTrackRef.current?.getTracks().forEach((track) => track.stop());
-      setMicOn(false);
+  const toggleMic = () => {
+    if (micTrackRef.current) {
+      const enabled = !micOn;
+      micTrackRef.current.enabled = enabled;
+      setMicOn(enabled);
     }
   };
 
   const leaveRoom = () => {
-    micTrackRef.current?.getTracks().forEach((track) => track.stop());
-    setMicOn(false);
-    alert('You have left the room.');
+    micTrackRef.current?.stop();
+    alert('You left the room.');
+    window.location.href = '/dashboard';
   };
 
-  return (
-    <div className="page">
-      <h1 className="title">🎧 Audio Room</h1>
+  useEffect(() => {
+    startAudio();
+    return () => micTrackRef.current?.stop();
+  }, []);
 
-      <div className="participant-list">
-        {participants.map((name, idx) => (
-          <div className="user-tile" key={idx}>
-            {name} {name === 'You' && micOn ? '🎙️' : ''}
+  return (
+    <div className="audio-room-container">
+      <h2 className="room-title">🎙️ Audio Room</h2>
+
+      <div className="participants-section">
+        {participants.map(user => (
+          <div key={user.id} className="participant-bubble">
+            <span>{user.name}</span>
           </div>
         ))}
       </div>
 
-      <div className="controls">
-        <button className="btn" onClick={toggleMic}>
-          {micOn ? 'Mute Mic' : 'Unmute Mic'}
+      <div className="audio-controls">
+        <button onClick={toggleMic} className={`audio-btn ${micOn ? 'on' : 'off'}`}>
+          {micOn ? '🔊 Mic On' : '🔇 Mic Off'}
         </button>
-        <button className="btn leave" onClick={leaveRoom}>
-          Leave Room
-        </button>
+        <button onClick={leaveRoom} className="leave-btn">🚪 Leave Room</button>
       </div>
     </div>
   );
