@@ -59,7 +59,7 @@ export default function Dashboard() { // Define the Dashboard functional compone
         </header>
 
         <section className="intro-section"> {/* Section for starting livestream/audio/call */}
-          <h2>Getting Started with Video & Audio</h2> {/* Section heading */}
+          <h2 style={{textAlign:"left"}}>Getting Started with Video & Audio</h2> {/* Section heading */}
           <p>Launch a new video call, audio room, or livestream with ease using our tools.</p> {/* Description */}
           <div className="button-group"> {/* Container for action buttons */}
             <button className="action-btn" onClick={handleCreateCall}>🎥 Create Call</button> {/* Create video call */}
@@ -69,7 +69,7 @@ export default function Dashboard() { // Define the Dashboard functional compone
         </section>
 
         <section className="keys-section"> {/* Placeholder for showing API/app keys */}
-          <h2>🔑 App Access Keys</h2> {/* Section heading */}
+          <h2 style={{textAlign:"left"}}>🔑 App Access Keys</h2> {/* Section heading */}
           <p>Manage your API access securely from here.</p> {/* Section description */}
         </section>
 
