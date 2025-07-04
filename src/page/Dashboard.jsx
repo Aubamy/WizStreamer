@@ -74,7 +74,7 @@ export default function Dashboard() { // Define the Dashboard functional compone
         </section>
 
         <div className="start"> {/* Get started button section */}
-          <button onClick={loginClick}>Get Started📞</button> {/* Navigate to login/start page */}
+          <button onClick={livestreamClick}>Get Started📞</button> {/* Navigate to login/start page */}
         </div>
       </main>
 
