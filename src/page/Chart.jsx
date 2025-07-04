@@ -154,3 +154,6 @@ export default function Chart() { // Define and export the Chart functional comp
     </div>
   );
 }
+
+
+// CHECK
