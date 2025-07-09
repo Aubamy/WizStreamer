@@ -1,39 +1,84 @@
+body {
+  background-color: #0f1f0f;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 .moderation-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background: #0f172a;
-  color: white;
-  border-radius: 10px;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #102610;
+  border-radius: 12px;
+  color: #00ff6a;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .banned-list {
-  margin-top: 10px;
-  color: #f87171;
-  font-size: 0.9rem;
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.banned-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.banned-pill {
+  background-color: #00ff6a;
+  color: #0f1f0f;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .message-list {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.message-item {
-  background: #1e293b;
+.message-card {
+  background: #1a2e1a;
+  border: 1px solid #00ff6a22;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 255, 106, 0.15);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
 }
 
-.message-content {
+.user-badge {
+  background: #00ff6a;
+  color: #0f1f0f;
+  padding: 3px 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+.message-body {
   font-size: 1rem;
-  margin-bottom: 8px;
-  word-wrap: break-word;
+  color: #e2ffe9;
+  margin-bottom: 12px;
 }
 
 .moderation-actions {
@@ -43,28 +88,41 @@ h2 {
 }
 
 .moderation-actions button {
-  padding: 6px 12px;
-  background: #334155;
-  color: white;
+  flex: 1;
+  padding: 8px 14px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 6px;
   font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.moderation-actions button:hover {
-  background: #475569;
+.delete-btn {
+  background-color: #334d34;
+  color: #ff6b6b;
 }
 
-/* ✅ Responsive styles */
+.ban-btn {
+  background-color: #00ff6a;
+  color: #0f1f0f;
+}
+
+.delete-btn:hover {
+  background-color: #445e44;
+}
+
+.ban-btn:hover {
+  background-color: #00cc5c;
+}
+
 @media (max-width: 600px) {
   .moderation-container {
-    padding: 15px;
+    padding: 20px;
   }
 
   .moderation-actions {
     flex-direction: column;
-    gap: 6px;
   }
 
   .moderation-actions button {

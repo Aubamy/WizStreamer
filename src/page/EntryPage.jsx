@@ -52,13 +52,13 @@ export default function EntryPage() { // Define and export the EntryPage compone
   return (
     <div className="entry-container"> {/* Root container */}
       <div className="entry-image"> {/* Left image section */}
-        <img src={stream} alt="Livestream" /> {/* Show livestream image */}
+        <img src={"https://img.freepik.com/premium-photo/gaming-room-mockup-featuring-streaming-setup-green-screen-highend-microphone-style-raw-v-61-jo_1106493-464184.jpg"} alt="Livestream" /> {/* Show livestream image */}
         <div className="entry-caption">Stream your world in real-time 🎥</div> {/* Caption under image */}
       </div>
 
       <div className="entry-form-section"> {/* Right form section */}
         <div className="entry-card"> {/* Card for form content */}
-          <h2>{isRegistering ? 'Create an Account' : 'Welcome to Wiz Stream'}</h2> {/* Title depends on mode */}
+          <h2>{isRegistering ? 'Create an Account' : 'Welcome to GameVerse Stream'}</h2> {/* Title depends on mode */}
           <p className="entry-subtext">
             {isRegistering
               ? 'Register to start your stream'

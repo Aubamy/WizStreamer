@@ -24,19 +24,27 @@ export default function Moderation() {
 
       {bannedUsers.length > 0 && (
         <div className="banned-list">
-          <strong>Banned Users:</strong> {bannedUsers.join(', ')}
+          <strong>Banned Users:</strong>
+          <div className="banned-tags">
+            {bannedUsers.map((user, index) => (
+              <span key={index} className="banned-pill">{user}</span>
+            ))}
+          </div>
         </div>
       )}
 
       <div className="message-list">
         {messages.map((msg) => (
-          <div key={msg.id} className="message-item">
-            <div className="message-content">
-              <strong>{msg.user}:</strong> {msg.text}
+          <div key={msg.id} className="message-card">
+            <div className="message-header">
+              <span className="user-badge">{msg.user}</span>
+            </div>
+            <div className="message-body">
+              {msg.text}
             </div>
             <div className="moderation-actions">
-              <button onClick={() => deleteMessage(msg.id)}>🗑️ Delete</button>
-              <button onClick={() => banUser(msg.user)}>🚫 Ban</button>
+              <button className="delete-btn" onClick={() => deleteMessage(msg.id)}>🗑️ Delete</button>
+              <button className="ban-btn" onClick={() => banUser(msg.user)}>🚫 Ban</button>
             </div>
           </div>
         ))}

@@ -8,7 +8,7 @@ export default function Login(){
         <div className="livestream-signin-section">
             <div className="image"><img src={stream} alt="" /></div>
         <div className="signin-card">
-          <h2>Welcome to Wiz Stream</h2>
+          <h2>Welcome to GameVerse Stream</h2>
           <p className="signin-subtext">Sign in to join or start your stream</p>
           <form className="signin-form">
             <input type="text" placeholder="Username or Email" required />
