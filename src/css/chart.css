@@ -1,6 +1,3 @@
-/* --- Import Font & Define Theme --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 :root {
   --background-dark: #18191a;
   --background-medium: #242526;
@@ -14,7 +11,7 @@
   --font-family: 'Inter', sans-serif;
 }
 
-/* --- Base Styles --- */
+
 body, html {
   margin: 0;
   padding: 0;
@@ -29,7 +26,6 @@ body, html {
   height: 100vh;
 }
 
-/* --- Sidebar --- */
 .chat-sidebar {
   width: 320px;
   background: var(--background-dark);
@@ -38,6 +34,8 @@ body, html {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-color);
+  background-color: #102610;
+  scrollbar-width:none;
 }
 
 .chat-search {
@@ -68,11 +66,11 @@ body, html {
 }
 
 .chat-item:hover {
-  background: var(--background-medium);
+  background: #2ea043;
 }
 
 .chat-item.active {
-  background: var(--accent-primary);
+  background: #2ea043;
 }
 
 .chat-avatar, .header-avatar {
@@ -119,8 +117,7 @@ body, html {
   background: #16a34a;
 }
 
-/* --- Main Chat Area --- */
-.chat-main-area {
+  .chat-main-area {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -156,10 +153,9 @@ body, html {
 }
 .header-details span {
   font-size: 0.8rem;
-  color: #22c55e; /* Online status */
+  color: #22c55e; 
 }
 
-/* --- Chat Window & Messages --- */
 .chat-window {
   flex: 1;
   padding: 20px;
@@ -203,9 +199,8 @@ body, html {
 }
 .message-container.user .message-meta {
   color: rgba(255, 255, 255, 0.7);
-}
+} 
 
-/* --- Input Bar --- */
 .chat-input-bar {
   display: flex;
   padding: 15px 20px;
@@ -237,7 +232,6 @@ body, html {
   color: var(--accent-primary);
 }
 
-/* --- Stickers --- */
 .sticker-panel {
   display: flex;
   flex-wrap: wrap;
@@ -259,8 +253,7 @@ body, html {
 .sticker-btn:hover {
   transform: scale(1.1);
 }
-
-/* --- Mobile Responsive --- */
+  
 .back-btn {
   display: none;
 }
