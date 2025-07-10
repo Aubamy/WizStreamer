@@ -1,0 +1,84 @@
+.trendingPage {
+    padding: 32px;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    overflow-y: auto !important;
+    scrollbar-width: none;
+  }
+  
+  .trendingHeader {
+    margin-bottom: 32px;
+  }
+  
+  .trendingHeader h1 {
+    font-size: 2rem;
+    color: #00ff6a;
+    margin-bottom: 8px;
+  }
+  
+  .trendingHeader p {
+    color: #8b949e;
+  }
+  
+  .trendingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  
+  .trendCard {
+    background-color: #161b22;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0 0 12px rgba(0, 255, 106, 0.05);
+  }
+  
+  .trendCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 16px rgba(0, 255, 106, 0.1);
+  }
+  
+  .trendCard img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .trendInfo {
+    padding: 14px 16px;
+  }
+  
+  .trendInfo h3 {
+    font-size: 1.1rem;
+    margin: 0 0 6px;
+    color: #fff;
+  }
+  
+  .trendInfo p {
+    font-size: 0.9rem;
+    color: #8b949e;
+  }
+  
+
+  .backButtonWrapper {
+    margin-bottom: 16px;
+  }
+  
+  .backButton {
+    background-color: var(--accent);
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: #000;
+  }
+  
+  .backButton:hover {
+    background-color: var(--accent-hover);
+    color: #fff;
+  }
+  

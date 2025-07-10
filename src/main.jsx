@@ -17,6 +17,7 @@ import StreamerPage from './page/StreamerPage.jsx';
 import Viewer from './page/Viewer.jsx';
 import Activity from './page/Activity.jsx';
 import Moderation from './page/Moderation.jsx'
+import Trending from './page/Trending.jsx'
 
 import './css/home.css';
 
@@ -38,6 +39,15 @@ createRoot(document.getElementById('root')).render(
       <Route path="/signform" element={<SignForm />} />
       <Route path="/activity" element={<Activity />} />
       <Route path="/moderation" element={<Moderation/>} />
+      <Route
+  path="/trending"
+  element={
+    <div style={{ height: '100%', overflowY: 'auto' }}>
+      <Trending />
+    </div>
+  }
+/>
+
       
     </Routes>
   </BrowserRouter>
